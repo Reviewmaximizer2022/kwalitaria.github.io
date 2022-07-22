@@ -1,0 +1,29 @@
+( function() {
+
+	window.addEventListener('scroll', function() {
+		if (window.pageYOffset > 300) {
+			document.body.classList.add('scrolled');
+		} else if (window.pageYOffset < 30) {
+			document.body.classList.remove('scrolled');
+		}
+	});
+
+	document.addEventListener( 'click', (e) => {
+
+		if ( e.target.closest( 'li.focus' ) ) {
+			return;
+		}
+
+		let openMenus = document.querySelectorAll( 'li.menu-item.focus' );
+		for( let menu of openMenus ) {
+			menu.classList.remove( 'focus' );
+			let anchor = menu.querySelector( 'a.blocked' );
+			if ( anchor ) {
+				anchor.classList.remove( 'blocked' );
+			}
+		}
+
+	} );
+
+} )();
+

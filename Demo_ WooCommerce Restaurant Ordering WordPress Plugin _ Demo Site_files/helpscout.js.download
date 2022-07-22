@@ -1,0 +1,31 @@
+( function() {
+	"use script";
+
+	const installHelpscout = () => {
+
+		if ( ! window.globalObject ) {
+			window.globalObject = {};
+		}
+		window.globalObject.kbApiEndpoint = globalObject.endpoint;
+		window.globalObject.hkb_tax = globalObject.categories;
+
+		let b2hsScript = document.createElement( 'script' );
+		b2hsScript.src = globalObject.barn2_script_url;
+		b2hsScript.id = 'barn2_helpscout_script';
+		document.body.append( b2hsScript );
+
+		b2hsScript.addEventListener( 'load', () => {
+			let hsScript = document.createElement( 'script' );
+			hsScript.src = globalObject.hs_script_url;
+			document.body.append( hsScript );
+		} );
+
+	};
+	
+	if ( document.readyState === 'interactive' ) {
+		installHelpscout();
+	} else {
+		document.addEventListener( 'DOMContentLoaded', installHelpscout );
+	}
+
+} )();
